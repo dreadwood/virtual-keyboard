@@ -1,3 +1,8 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
 .tablet {
   width: 1059px;
   height: 842px;
@@ -75,7 +80,8 @@
   outline: none;
 }
 
-.keyboard__key:active {
+.keyboard__key:active,
+.keyboard__key--down-key {
   box-shadow:
     0 1px 0 0 #868a8d,
     0 1px 3px 0 rgba(0, 0, 0, 0.5) inset;
@@ -87,7 +93,8 @@
   font-size: 0;
 }
 
-.keyboard__key--option:active {
+.keyboard__key--option:active,
+.keyboard__key--option-key {
   /* background-color: #007aff; */
   background-color: #ea8104;
   filter: invert(100%);
@@ -151,6 +158,13 @@
   width: 307px;
   /* delete */
   font-size: 0;
+}
+
+.keyboard__key--lang {
+  width: 68px;
+
+  background-image: url(img/icon-new.svg);
+  background-size: 24px auto;
 }
 
 .keyboard__key-arrow {
