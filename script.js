@@ -15,7 +15,7 @@ const Keyboard = {
     value: '',
     capsLock: false,
     shift: false,
-    cmd: false,
+    alt: false,
     lang: 'eng',
   },
 
@@ -61,12 +61,12 @@ const Keyboard = {
         this.toggleShift();
       }
 
-      if (evt.code === 'AltLeft') {
-        this.properties.cmd = true;
+      if (evt.code === 'AltLeft' || evt.code === 'AltRight') {
+        this.properties.alt = true;
         this.elements.keys[54].classList.add('keyboard__key--option-key');
       }
 
-      if (evt.code === 'Space' && this.properties.cmd) {
+      if (evt.code === 'Space' && this.properties.alt) {
         this.toggleLang();
       }
 
@@ -84,8 +84,8 @@ const Keyboard = {
         }
         this.toggleShift();
       }
-      if (evt.code === 'AltLeft') {
-        this.properties.cmd = false;
+      if (evt.code === 'AltLeft' || evt.code === 'AltRight') {
+        this.properties.alt = false;
         this.elements.keys[54].classList.remove('keyboard__key--option-key');
       }
     });
