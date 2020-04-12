@@ -20,6 +20,8 @@ const Keyboard = {
   },
 
   init() {
+    this.initLang();
+
     this.elements.main = document.createElement('div');
     this.elements.screen = document.createElement('div');
     this.elements.input = document.createElement('textarea');
@@ -93,8 +95,9 @@ const Keyboard = {
 
   createKeys() {
     const fragment = document.createDocumentFragment();
+    const currentLang = (this.properties.lang === 'eng') ? this.keys.engLower : this.keys.rusLower;
 
-    this.keys.engLower.forEach((key, index) => {
+    currentLang.forEach((key, index) => {
       const keyElement = document.createElement('button');
 
       keyElement.setAttribute('type', 'button');
@@ -282,12 +285,19 @@ const Keyboard = {
 
   toggleLang() {
     this.properties.lang = (this.properties.lang === 'eng') ? 'rus' : 'eng';
+    window.localStorage.setItem('lang', this.properties.lang);
 
     this.elements.keys.forEach((key, index) => {
       if (!key.classList.contains('keyboard__key--option')) {
         key.textContent = (this.properties.lang === 'eng') ? this.keys.engLower[index] : this.keys.rusLower[index];
       }
     });
+  },
+
+  initLang() {
+    if (window.localStorage.getItem('lang')) {
+      this.properties.lang = window.localStorage.getItem('lang');
+    }
   },
 
   keys: {
